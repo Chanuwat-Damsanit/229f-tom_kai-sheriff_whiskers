@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpForce;
     [SerializeField] bool isJumping;
 
+    [SerializeField] int coinCount = 0;
+
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -43,6 +45,12 @@ public class PlayerMovement : MonoBehaviour
         {
             isJumping = false;
         }
+
+        if (other.gameObject.CompareTag("Coin"))
+        {
+            coinCount++;
+            Destroy(other.gameObject);
+        }
     }
 
     private void OnCollisionExit2D(Collision2D other)
@@ -50,6 +58,14 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Ground"))
         {
             isJumping = true;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Water"))
+        {
+            isJumping = false;
         }
     }
 }
