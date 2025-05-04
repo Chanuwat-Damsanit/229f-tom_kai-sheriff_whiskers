@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpForce;
     [SerializeField] bool isJumping;
 
-    [SerializeField] int coinCount = 0;
+    public int coinCount = 0;
 
     void Start()
     {
