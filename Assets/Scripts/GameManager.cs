@@ -48,4 +48,9 @@ public class GameManager : MonoBehaviour
         var s = SceneManager.GetActiveScene();
         SceneManager.LoadScene(s.name);
     }
+
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadSceneAsync("MainMenu");
+    }
 }
