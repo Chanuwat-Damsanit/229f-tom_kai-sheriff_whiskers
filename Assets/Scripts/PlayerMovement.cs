@@ -14,11 +14,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpForce;
     [SerializeField] bool isJumping;
 
+    public int playerHp;
     public int coinCount = 0;
+
+    [SerializeField] GameManager gameManager;
 
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        coinCount = 0;
     }
 
     void Update()
@@ -51,6 +55,19 @@ public class PlayerMovement : MonoBehaviour
             coinCount++;
             Destroy(other.gameObject);
         }
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            playerHp -= 1;
+            Destroy(other.gameObject);
+
+            if (playerHp <= 0)
+            {
+                Debug.Log("Game Over!");
+                gameManager.GameOver();
+            }
+        }
+        
+
     }
 
     private void OnCollisionExit2D(Collision2D other)
@@ -66,6 +83,12 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Water"))
         {
             isJumping = false;
+        }
+
+        if (other.gameObject.CompareTag("WinTrigger"))
+        {
+            Debug.Log("Win");
+            gameManager.GameWin();
         }
     }
 }

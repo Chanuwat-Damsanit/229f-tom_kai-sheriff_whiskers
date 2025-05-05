@@ -8,6 +8,9 @@ TagManager:
   - Ground
   - Water
   - Coin
+  - Ladder
+  - Platform
+  - WinTrigger
   layers:
   - Default
   - TransparentFX
