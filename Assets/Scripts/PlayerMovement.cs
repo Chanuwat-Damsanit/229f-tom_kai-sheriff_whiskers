@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour
 
     //Jump
     [SerializeField] float jumpForce;
-    //[SerializeField] bool isJumping;
 
     public int playerHp;
     public int coinCount = 0;
@@ -34,13 +33,6 @@ public class PlayerMovement : MonoBehaviour
         //Walk left-right
         move = Input.GetAxis("Horizontal");
         rb2d.linearVelocity = new Vector2(move * speed, rb2d.linearVelocity.y);
-
-        ////Jump
-        //if (Input.GetButtonDown("Jump") && !isJumping)
-        //{
-        //    rb2d.AddForce(new Vector2(rb2d.linearVelocity.x, jumpForce));
-        //    Debug.Log("Jump"); //for debugging
-        //}
 
         //jump
        if (Input.GetButtonDown("Jump"))
@@ -70,8 +62,6 @@ public class PlayerMovement : MonoBehaviour
                 gameManager.GameOver();
             }
         }
-        
-
     }
 
 
