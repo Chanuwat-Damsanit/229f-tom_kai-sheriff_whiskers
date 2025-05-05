@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     //Jump
     [SerializeField] float jumpForce;
-    [SerializeField] bool isJumping;
+    //[SerializeField] bool isJumping;
 
     public int playerHp;
     public int coinCount = 0;
@@ -35,20 +35,24 @@ public class PlayerMovement : MonoBehaviour
         move = Input.GetAxis("Horizontal");
         rb2d.linearVelocity = new Vector2(move * speed, rb2d.linearVelocity.y);
 
-        //Jump
-        if (Input.GetButtonDown("Jump") && !isJumping)
-        {
-            rb2d.AddForce(new Vector2(rb2d.linearVelocity.x, jumpForce));
-            Debug.Log("Jump"); //for debugging
-        }
+        ////Jump
+        //if (Input.GetButtonDown("Jump") && !isJumping)
+        //{
+        //    rb2d.AddForce(new Vector2(rb2d.linearVelocity.x, jumpForce));
+        //    Debug.Log("Jump"); //for debugging
+        //}
+
+        //jump
+       if (Input.GetButtonDown("Jump"))
+       {
+           rb2d.AddForce(new Vector2(rb2d.linearVelocity.x, jumpForce));
+           Debug.Log("Jump"); //for debugging
+       }
+
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            isJumping = false;
-        }
 
         if (other.gameObject.CompareTag("Coin"))
         {
@@ -70,21 +74,9 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            isJumping = true;
-        }
-    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Water"))
-        {
-            isJumping = false;
-        }
-
         if (other.gameObject.CompareTag("WinTrigger"))
         {
             Debug.Log("Win");
