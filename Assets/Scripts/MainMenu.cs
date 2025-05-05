@@ -7,5 +7,8 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadSceneAsync("GameScene");
     }
-
+     public void CreditScene()
+    {
+        SceneManager.LoadSceneAsync("CreditScene");
+    }
 }
